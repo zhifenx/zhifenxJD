@@ -412,7 +412,7 @@ if(DisableIndex!=-1){
 			
 			TempBaipiao = "";
 			strGuoqi="";
-			console.log(`******开始查询【京东账号${$.index}】${$.nickName || $.UserName}*********`);
+			console.log(`******开始查询【京东账号${$.index} value:${$.Remarks}】${$.nickName || $.UserName}*********`);
 			await TotalBean();			
 		    //await TotalBean2();
 			if ($.beanCount == 0) {
@@ -434,7 +434,7 @@ if(DisableIndex!=-1){
 				await isLoginByX1a0He();
 			}
 			if (!$.isLogin) {
-				$.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} value:${$.Remarks} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
+				$.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
 					"open-url": "https://bean.m.jd.com/bean/signIndex.action"
 				});
 
