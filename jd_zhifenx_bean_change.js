@@ -12,6 +12,12 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent = $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``) : ``;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+
+//zhifenx - getEnvs 目的是去获取 备注信息
+const {
+    getEnvs
+} = require('./ql');
+
 let NowHour = new Date().getHours();
 
 //默认开启缓存模式
@@ -344,6 +350,18 @@ if(DisableIndex!=-1){
 }
 
 !(async() => {
+
+	const envs = await getEnvs();
+	console.log('zhifenx - 开始遍历 envs 获取 remark')
+	for (let i = 0; i < envs.length; i++) {
+        if (envs[i].value) {
+			var strRemark=getRemark(envs[i].remarks)
+			arrEnvRemark.push(strRemark);
+			console.log(`zhifenx - remark: ${strRemark}`)			
+        }
+    }
+	console.log('zhifenx - 遍历 envs 结束')
+
 	if (!cookiesArr[0]) {
 		$.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {
 			"open-url": "https://bean.m.jd.com/bean/signIndex.action"
@@ -412,7 +430,7 @@ if(DisableIndex!=-1){
 			
 			TempBaipiao = "";
 			strGuoqi="";
-			console.log(`******开始查询【京东账号${$.index} value:${$.Remarks}】${$.nickName || $.UserName}*********`);
+			console.log(`******开始查询【京东账号${$.index} value:${$.remarks}】${$.nickName || $.UserName}*********`);
 			await TotalBean();			
 		    //await TotalBean2();
 			if ($.beanCount == 0) {
