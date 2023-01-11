@@ -355,16 +355,14 @@ if(DisableIndex!=-1){
 
 !(async() => {
 
+	//zhifenx - 遍历拿到env 备注信息
 	const envs = await getEnvs();
-	console.log('zhifenx - 开始遍历 envs 获取 remark')
 	for (let i = 0; i < envs.length; i++) {
         if (envs[i].value) {
 			var strRemark=getRemark(envs[i].remarks)
 			arrEnvRemark.push(strRemark);
-			console.log(`zhifenx - remark: ${strRemark}`)			
         }
     }
-	console.log('zhifenx - 遍历 envs 结束')
 
 	if (!cookiesArr[0]) {
 		$.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {
@@ -387,6 +385,7 @@ if(DisableIndex!=-1){
 			$.errorMsg = '';
 			$.isLogin = true;
 			$.nickName = '';
+			$.remarks = arrEnvRemark[i];
 			$.levelName = '';
 			$.message = '';
 			$.balance = 0;
