@@ -384,8 +384,9 @@ if(DisableIndex!=-1){
 			$.todayOutcomeBean = 0;
 			$.errorMsg = '';
 			$.isLogin = true;
-			$.nickName = '';
 			$.remarks = arrEnvRemark[i];
+			//将备注赋值给 nickName
+			$.nickName = arrEnvRemark[i];
 			$.levelName = '';
 			$.message = '';
 			$.balance = 0;
@@ -433,7 +434,7 @@ if(DisableIndex!=-1){
 			
 			TempBaipiao = "";
 			strGuoqi="";
-			console.log(`******开始查询【京东账号${$.index} value:${$.remarks}】${$.nickName || $.UserName}*********`);
+			console.log(`******开始查询【京东账号${$.index}】${$.nickName || $.UserName}*********`);
 			await TotalBean();			
 		    //await TotalBean2();
 			if ($.beanCount == 0) {
