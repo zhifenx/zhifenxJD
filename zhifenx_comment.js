@@ -2,7 +2,7 @@
 自动评价
 cron 21 12 * * * jd_comment.js
 */
-const $ = new Env('自动评价');
+const $ = new Env('zhifenx-自动评价[运行一次可以执行50「0x32」个用户]');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
